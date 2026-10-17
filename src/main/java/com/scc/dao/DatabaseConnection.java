@@ -3,15 +3,19 @@ package com.scc.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DatabaseConnection {
 
     private static final String DB_URL = "jdbc:sqlite:teachersdb.db";
 
-
     public static Connection getConnection()   throws SQLException{
+        Connection conn = DriverManager.getConnection(DB_URL);
 
-        return DriverManager.getConnection(DB_URL);
+        try(Statement stmt = conn.createStatement()){
+            stmt.execute("PRAGMA foreign_kes = ON");
+        }
+        return conn;
 
     }
 }
