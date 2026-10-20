@@ -2,10 +2,7 @@ package com.scc;
 
 import com.scc.dao.DataBaseinitializer;
 import com.scc.dao.UsersDao;
-import com.scc.model.Users;
-import com.scc.ui.AdminMenu;
 import com.scc.ui.Authentication;
-
 import java.util.Scanner;
 
 public class Main {

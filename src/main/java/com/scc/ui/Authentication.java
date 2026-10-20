@@ -2,7 +2,6 @@ package com.scc.ui;
 
 import com.scc.dao.UsersDao;
 import com.scc.model.Users;
-
 import java.util.Scanner;
 
 public class Authentication {

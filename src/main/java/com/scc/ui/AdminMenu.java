@@ -2,6 +2,8 @@ package com.scc.ui;
 
 import com.scc.dao.UsersDao;
 import com.scc.model.Users;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class AdminMenu {
@@ -30,7 +32,32 @@ public class AdminMenu {
 
             String choice = scanner.nextLine().trim();
 
+            switch (choice){
+                case "1" -> viewAllUsers();
+                default -> System.out.println(" -> [ERROR] invalid Options,");
+            }
+
 
         }
+    }
+
+    private void displayUserTable(List<Users> Users, String title){
+        System.out.println("\n================================" +title+ "==================================");
+        if(Users.isEmpty()){
+            System.out.println("-> No RECORDS FOUND");
+            return;
+        }
+        System.out.println("+-----+-----------------+------------+------------+");
+        System.out.printf("| %-3s | %-15s | %-10s | %-10s |\n", "ID", "Username", "Role", "Status");
+        System.out.println("+-----+-----------------+------------+------------+");
+        for(Users u : Users){
+            System.out.printf("| %-3s | %-15s | %-10s | %-10s |\n",
+            u.id(), u.username(), u.role(), u.status());
+        }
+        System.out.println("+-----+-----------------+------------+------------+");
+    }
+
+    private void viewAllUsers(){
+        displayUserTable(usersDao.getAllUser(), "ALL REGISTERED USER");
     }
 }
