@@ -34,6 +34,7 @@ public class AdminMenu {
 
             switch (choice){
                 case "1" -> viewAllUsers();
+                case "2" ->
                 default -> System.out.println(" -> [ERROR] invalid Options,");
             }
 
@@ -60,4 +61,9 @@ public class AdminMenu {
     private void viewAllUsers(){
         displayUserTable(usersDao.getAllUser(), "ALL REGISTERED USER");
     }
+
+    private void viewPendingUsers(){
+        displayUserTable(usersDao.getPendingUser(), "PENDING APPROVALS");
+    }
 }
+

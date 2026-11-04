@@ -112,6 +112,30 @@ public class UsersDao {
             }
             return usersList;
         }
-    }
+    public List<Users> getPendingUser(){
+        List<Users> pendingList = new ArrayList<>();
+        String sql = "SELECT * FROM users WHERE status = 'PENDING'";
+
+        try(Connection conn = DatabaseConnection.getConnection()){
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while(rs.next()){
+                pendingList.add(new Users(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("roles"),
+                        rs.getString("status")
+                ));
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching users: "+e.getMessage());
+        }
+        return pendingList;
 
 
+}
+
+}
